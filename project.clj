@@ -1,5 +1,8 @@
-(defproject org.clojars.smallrivers/feedparser-clj "0.5.1"
+(defproject org.clojars.smallrivers/feedparser-clj "0.5.2-SNAPSHOT"
   :description "Parse RSS/Atom feeds with a simple, clojure-friendly API."
-  :dependencies [[org.clojure/clojure "1.8.0"]
-                 [org.jdom/jdom "2.0.2"]
-                 [com.rometools/rome "1.7.0"]])
+  :dependencies [[com.rometools/rome "1.11.0"]]
+  :pedantic? :abort
+  :profiles {:dev
+             {:dependencies
+              [[org.clojure/clojure "1.9.0"]]}
+             :reflection {:global-vars {*warn-on-reflection* true}}})

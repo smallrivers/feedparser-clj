@@ -64,7 +64,7 @@
                :categories (map make-category (seq (.getCategories e)))
                :contents (map make-content (seq (.getContents e)))
                :contributors (map make-person (seq (.getContributors e)))
-               :description (if-let [d (.getDescription e)] (make-content d))
+               :description (when-let [d (.getDescription e)] (make-content d))
                :enclosures (map make-enclosure (seq (.getEnclosures e)))
                :link (.getLink e)
                :published-date (.getPublishedDate e)
@@ -83,7 +83,7 @@
                :encoding (.getEncoding f)
                :entries (map make-entry (seq (.getEntries f)))
                :feed-type (.getFeedType f)
-               :image (if-let [i (.getImage f)] (make-image i))
+               :image (when-let [i (.getImage f)] (make-image i))
                :language (.getLanguage f)
                :link (.getLink f)
                :entry-links (map make-link (seq (.getLinks f)))
@@ -118,5 +118,5 @@
                        (instance? File feedsource) (XmlReader. ^File feedsource)
                        :else (throw (ex-info "Unsupported source" {:source feedsource
                                                                    :type (type feedsource)})))))
-  ([feedsource content-type]
-     (parse-internal (new XmlReader ^InputStream feedsource true content-type))))
+  ([^InputStream feedsource ^String content-type]
+     (parse-internal (XmlReader. feedsource true content-type))))
