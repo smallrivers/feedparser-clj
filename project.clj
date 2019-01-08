@@ -1,5 +1,8 @@
 (defproject org.clojars.smallrivers/feedparser-clj "0.5.3-SNAPSHOT"
   :description "Parse RSS/Atom feeds with a simple, clojure-friendly API."
+  :deploy-repositories {"releases" {:url "https://repo.clojars.org"
+                                    :username :env/clojars_user
+                                    :password :env/clojars_pass}}
   :dependencies [[com.rometools/rome "1.12.0"]]
   :pedantic? :abort
   :profiles {:dev
